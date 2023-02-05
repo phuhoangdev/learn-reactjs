@@ -1,18 +1,19 @@
 import React from "react";
+import DisplayInfo from "./DisplayInfo";
+import AddUserInfo from "./AddUserInfo";
 
 class MyComponent extends React.Component {
-
+    
     state = {
-        name: 'Phu',
-        address: 'Nha Trang',
-        age: 26
-    };
+        listUsers: [
+            {id: 1, name: "Phu", age: "18"},
+            {id: 2, name: "Phu Hoang", age: "27"},
+        ]
+    }
 
-    handleClick(event) {
-        console.log("My name is", this.state.name)
-
+    handleAddNewUser = (userObj) => {
         this.setState({
-            name: 'Phu Hoang'
+            listUsers: [userObj, ...this.state.listUsers]
         })
     }
 
@@ -21,8 +22,13 @@ class MyComponent extends React.Component {
         return (
 
             <div>
-                My name is {this.state.name} and I'm from {this.state.address}
-                <button onClick={(event) => { this.handleClick(event) }}>Click me!</button>
+                <AddUserInfo 
+                    handleAddNewUser={this.handleAddNewUser}
+                />
+                <br/>
+                <DisplayInfo 
+                    listUsers={this.state.listUsers} 
+                />
             </div>
 
         );
