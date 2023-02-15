@@ -1,0 +1,39 @@
+.register-container {
+    .header {
+        padding: 20px 10px;
+    }
+
+    .title {
+        font-size: 25px;
+        font-weight: 700;
+        padding: 10px 0;
+    }
+
+    .content-form {
+        input {
+            margin-bottom: 15px;
+            margin-top: 5px;
+        }
+
+        .btn-submit {
+            width: 100%;
+            padding: 8px;
+            margin: 20px 0;
+        }
+
+        .back {
+            cursor: pointer;
+        }
+
+        .pass-group {
+            position: relative;
+
+            .icons-eye {
+                position: absolute;
+                right: 10px;
+                bottom: 10px;
+                cursor: pointer;
+            }
+        }
+    }
+}
