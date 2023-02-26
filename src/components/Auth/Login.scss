@@ -1,6 +1,26 @@
 .login-container {
+    .loader-icon{
+        font-size: 18px;
+        margin-bottom: 3px;
+        margin-right: 7px;
+        animation: spin 1s infinite linear;
+    }
+
+    @keyframes spin {
+        from {
+            transform: scale(1) rotate(0deg);
+        }
+        to {
+            transform: scale(1) rotate(360deg);
+        }
+    }
+
     .header {
-        padding: 20px 10px;
+        padding: 20px 30px;
+        display: flex;
+        align-items: center;
+        justify-content: flex-end;
+        gap: 10px;
     }
 
     .title {

@@ -4,6 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { postRegister } from '../../services/apiServices';
 import { toast } from 'react-toastify';
 import { VscEye, VscEyeClosed } from 'react-icons/vsc';
+import Language from '../Header/Language';
 
 const Register = (props) => {
 
@@ -54,6 +55,8 @@ const Register = (props) => {
                     className="btn btn-sm btn-outline-dark mx-2"
                     onClick={() => navigate('/login')}
                 >Log in</button>
+
+                <Language />
             </div>
 
             <div className="title text-center">

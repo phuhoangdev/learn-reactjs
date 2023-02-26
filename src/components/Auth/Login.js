@@ -3,12 +3,18 @@ import './Login.scss';
 import { useNavigate } from 'react-router-dom';
 import { postLogin } from '../../services/apiServices';
 import { toast } from 'react-toastify';
+import { useDispatch } from 'react-redux';
+import { doLogin } from '../../redux/action/userAction';
+import { RiLoader3Fill } from 'react-icons/ri';
+import Language from '../Header/Language';
 
 const Login = (props) => {
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const navigate = useNavigate();
+    const dispatch = useDispatch();
+    const [isLoading, setIsLoading] = useState(false);
 
     const validateEmail = (email) => {
         return String(email)
@@ -32,13 +38,18 @@ const Login = (props) => {
             return;
         }
 
+        setIsLoading(true);
+
         let data = await postLogin(email, password);
         
-        if(data && data.id != null){
+        if(data && data.token != null){
+            dispatch(doLogin(data));
             toast.success("Login Success");
+            setIsLoading(false);
             navigate('/');
         }else{
             toast.error("Login Error");
+            setIsLoading(false);
         }
     }
 
@@ -50,6 +61,8 @@ const Login = (props) => {
                     className="btn btn-sm btn-outline-dark mx-2"
                     onClick={() => navigate('/register')}
                 >Sign up</button>
+
+                <Language />
             </div>
 
             <div className="title text-center">
@@ -86,8 +99,10 @@ const Login = (props) => {
                     <button 
                         className="btn-submit btn btn-dark"
                         onClick={() => handleLogin()}
+                        disabled={isLoading}
                     >
-                        Log in
+                        {isLoading === true && <RiLoader3Fill className="loader-icon" />}
+                        <span>Log in</span>
                     </button>
                 </div>
                 <div className="text-center">
